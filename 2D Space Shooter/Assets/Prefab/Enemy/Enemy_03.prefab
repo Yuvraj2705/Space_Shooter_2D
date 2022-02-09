@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 4
+  explosion: {fileID: 19842296, guid: 338df03eebe5ae847be4ed4fdd4a253e, type: 3}
 --- !u!1 &2056195983156748683
 GameObject:
   m_ObjectHideFlags: 0

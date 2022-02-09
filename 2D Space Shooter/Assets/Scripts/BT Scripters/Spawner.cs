@@ -200,7 +200,7 @@ public class Spawner : MonoBehaviour
     {
         timer = 0;
         count = 0;
-        timeRate = 2;
+        timeRate = 1;
         SpawnTime = 5;
         DynamicHoldPoints = HoldPoints_Set_02;
         NoOfEnemies = DynamicHoldPoints.Length;

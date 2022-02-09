@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullet: {fileID: 4599461317765509785, guid: 3c1a29a273b724342bbe463618a10595, type: 3}
-  speed: 5
+  speed: 8
   force: 5
   destroyAfter: 5
   Intervals: 1.5
@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 15
+  explosion: {fileID: 19842296, guid: ff6123b4f3fdd974f873cb4435fad1ab, type: 3}
 --- !u!1 &8448636748724913851
 GameObject:
   m_ObjectHideFlags: 0

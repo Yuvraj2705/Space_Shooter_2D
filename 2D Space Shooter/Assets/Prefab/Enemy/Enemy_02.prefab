@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 7
+  explosion: {fileID: 19842296, guid: ee58376daf7a2934fbb2aa475eda1178, type: 3}
 --- !u!114 &8559408350408148624
 MonoBehaviour:
   m_ObjectHideFlags: 0

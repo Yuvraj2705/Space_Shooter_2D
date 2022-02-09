@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int Health;
+    [SerializeField] ParticleSystem explosion;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,6 +16,8 @@ public class EnemyHealth : MonoBehaviour
             if(Health == 0)
             {
                 Destroy(gameObject);
+                var Instance = Instantiate(explosion, transform.position, Quaternion.identity);
+                Destroy(Instance.gameObject,1);
             }
         }
     }
