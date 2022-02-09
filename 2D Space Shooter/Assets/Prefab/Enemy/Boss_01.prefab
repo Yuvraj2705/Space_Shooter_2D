@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c881e496865e12346bb8fb222fcade61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 500
+  Health: 1
   ApplyMechOneAt: 400
   explosion: {fileID: 19842296, guid: c39abfe93663c9a438d0514dc82e3dc1, type: 3}
 --- !u!1 &6912839277584826268
