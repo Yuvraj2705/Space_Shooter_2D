@@ -12,7 +12,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] Transform[] HoldPoints_Set_01;
     [SerializeField] Transform[] HoldPoints_Set_02;
     [SerializeField] Transform[] HoldPoints_Set_03;
-    [SerializeField]  public Transform[] MovePoints_Set_01;
+    [SerializeField] Transform[] MovePoints_Set_01;
+    [SerializeField] Transform[] MovePoints_Set_02;
     private Transform[] DynamicHoldPoints;
 
     [Header("Debug Temp HoldPoint")]
@@ -39,6 +40,7 @@ public class Spawner : MonoBehaviour
     [Header("Spawn Settings")]
     [SerializeField] int NoOfEnemies = 5;
     private int count = 0;
+    [HideInInspector] public Transform[] dynamicMovePointsSpawner;
     GameObject[] enemies;
     GameObject[] boss;
     int enemyCount;
@@ -67,6 +69,7 @@ public class Spawner : MonoBehaviour
         Leaf waveTwoData = new Leaf("Wave Two Data", WaveTwoData);
         Leaf waveThreeData_01 = new Leaf("Wave Three Data PArt 1", WaveThreeData_01);
         Leaf waveThreeData_02 = new Leaf("Wave Three Data Part 2", WaveThreeData_02);
+        Leaf bossData = new Leaf("Boss Data", BossData);
         Leaf spawnETO = new Leaf("SpawnETo", SpawnETOAdvance);
         Leaf spawnETT = new Leaf("SpawnETT", SpawnETT);
         Leaf spawnBoss = new Leaf("Spawning Boss", SpawnBoss);
@@ -103,6 +106,8 @@ public class Spawner : MonoBehaviour
         ! Boss Spawn
         */
         spawner.AddChild(spawnBoss);
+        spawner.AddChild(bossData);
+        spawner.AddChild(spawnETT);
         spawner.AddChild(bossCheck);
         spawner.AddChild(backToMenu);
 
@@ -156,6 +161,17 @@ public class Spawner : MonoBehaviour
         return Node.Status.RUNNING;
     }
 
+    public Node.Status BossData()
+    {
+        timer = 0;
+        count = 0;
+        timeRate = 2f;
+        SpawnTime = 10;
+        NoOfEnemies = 10;
+        dynamicMovePointsSpawner = MovePoints_Set_02;
+        return Node.Status.SUCCESS;
+    }
+
     public Node.Status WaveThreeData_02()
     {
         timer = 0;
@@ -163,6 +179,7 @@ public class Spawner : MonoBehaviour
         timeRate = 0.5f;
         SpawnTime = 5;
         NoOfEnemies = 7;
+        dynamicMovePointsSpawner = MovePoints_Set_01;
         return Node.Status.SUCCESS;
     }
 

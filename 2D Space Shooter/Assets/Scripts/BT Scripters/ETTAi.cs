@@ -69,7 +69,7 @@ public class ETTAi : MonoBehaviour
 
     public Node.Status SetPoint()
     {
-        DynamicMovePoints = GameObject.Find("Spawner").GetComponent<Spawner>().MovePoints_Set_01;
+        DynamicMovePoints = GameObject.Find("Spawner").GetComponent<Spawner>().dynamicMovePointsSpawner;
         Length = DynamicMovePoints.Length;
         return Node.Status.SUCCESS;
     }
