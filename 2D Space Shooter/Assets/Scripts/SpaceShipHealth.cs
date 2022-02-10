@@ -34,7 +34,6 @@ public class SpaceShipHealth : MonoBehaviour
                 var Instance = Instantiate(explosion,transform.position,Quaternion.identity);
                 Destroy(Instance.gameObject,1);
                 Destroy(gameObject);
-                yield return NextScene();
             }
             collider2D.enabled = false;
             anim.SetBool("hurt",true);

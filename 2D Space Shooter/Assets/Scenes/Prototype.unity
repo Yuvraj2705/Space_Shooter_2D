@@ -2743,11 +2743,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 149529220061790546, guid: 4866bf895511d554684296c553847d96, type: 3}
       propertyPath: health
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 149529220061790546, guid: 4866bf895511d554684296c553847d96, type: 3}
       propertyPath: maxHealth
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5535946709289851518, guid: 4866bf895511d554684296c553847d96, type: 3}
       propertyPath: m_IsActive
