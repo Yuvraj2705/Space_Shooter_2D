@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")]
     [SerializeField] float xPadding;
     [SerializeField] float speed;
+    public int health = 100;
  
     private float xMax, xMin;
 
