@@ -7,6 +7,7 @@ public class BossHealth : MonoBehaviour
     [SerializeField] int Health;
     [SerializeField] int ApplyMechOneAt = 80;
     [SerializeField] ParticleSystem explosion;
+    [SerializeField] GameObject ExplosionSoundObject;
     private bool mechOneApplyCheck = false;
     private Vector3 randomPos;
     int count = 0;
@@ -20,13 +21,14 @@ public class BossHealth : MonoBehaviour
             if(Health == 0)
             {
                 Destroy(gameObject);
+                var sound = Instantiate(ExplosionSoundObject, transform.position, Quaternion.identity);
+                Destroy(sound,4);
                 //InvokeRepeating("ExplosionPlus",0.001f,0.5f);
                 StartCoroutine(Explosion());
             }
 
             if(!mechOneApplyCheck && Health < ApplyMechOneAt)
             {
-                Debug.Log("Activated");
                 GameObject.FindGameObjectWithTag("Boss").GetComponent<BossAi>().EnemySpawnCheck = true;
                 mechOneApplyCheck = true;
             }
@@ -34,13 +36,13 @@ public class BossHealth : MonoBehaviour
     }
     void ExplosionPlus()
     {
-        if(count == 10)
+        if(count == 5)
         {
             CancelInvoke("ExplosionPlus");
         }
         randomPos = new Vector3(Random.Range(-3,3),Random.Range(3,-3),1);
         var Instance = Instantiate(explosion, transform.position + randomPos, Quaternion.identity);
-        Destroy(Instance.gameObject,1);
+        Destroy(Instance.gameObject,4);
         Debug.Log("Explosion");
         count++;
     }
@@ -52,7 +54,6 @@ public class BossHealth : MonoBehaviour
             randomPos = new Vector3(Random.Range(-3,3),Random.Range(3,-3),1);
             var Instance = Instantiate(explosion, transform.position + randomPos, Quaternion.identity);
             Destroy(Instance.gameObject,1);
-            Debug.Log("Explosion");
         }
         yield break;
     }

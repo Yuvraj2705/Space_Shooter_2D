@@ -1,7 +1,9 @@
+using System.Reflection.Emit;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Shooting : MonoBehaviour
 {
     [Header("Bullets")]
@@ -18,6 +20,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] float BulletSpeed;
     [SerializeField] float DestroyBulletTime = 1.5f;
     [SerializeField] float bulletFireRate = 0.3f;
+    [SerializeField] AudioClip laserSound;
 
     [Header("Player Settings")]
     [SerializeField] float timeBetweenRepeat;
@@ -28,20 +31,21 @@ public class Shooting : MonoBehaviour
     float timeBase;
 
     float spawnTime;
-    int GunSwitcher = 1;
+    [HideInInspector] public int GunSwitcher = 1;
+
+    private AudioSource audioSource;
 
     void Awake()
     {
         spawnTime = timeBetweenRepeat;
         timeBase = timeRate; 
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        LocalDebugger();
         ShootAIAdvance();
-        //ShootAINoRepeat();
-        //ShootAI();
+        ShootMechCheck();
     }
 
     void ShootAI()
@@ -96,6 +100,7 @@ public class Shooting : MonoBehaviour
                 BulletInstance.AddForce(Vector2.up * BulletSpeed, ForceMode2D.Impulse);
                 Destroy(BulletInstance.gameObject,DestroyBulletTime);
             }
+            audioSource.PlayOneShot(laserSound);
         }
         else if(GunSwitcher == 2)
         {
@@ -105,6 +110,7 @@ public class Shooting : MonoBehaviour
                 BulletInstance.AddForce(Vector2.up * BulletSpeed, ForceMode2D.Impulse);
                 Destroy(BulletInstance.gameObject,DestroyBulletTime);
             }
+            audioSource.PlayOneShot(laserSound);
         }
         else if(GunSwitcher == 3)
         {
@@ -114,6 +120,7 @@ public class Shooting : MonoBehaviour
                 BulletInstance.AddForce(Vector2.up * BulletSpeed, ForceMode2D.Impulse);
                 Destroy(BulletInstance.gameObject,DestroyBulletTime);
             }
+            audioSource.PlayOneShot(laserSound);
         }
         else if(GunSwitcher == 4)
         {
@@ -123,6 +130,7 @@ public class Shooting : MonoBehaviour
                 BulletInstance.AddForce(Vector2.up * BulletSpeed, ForceMode2D.Impulse);
                 Destroy(BulletInstance.gameObject,DestroyBulletTime);
             }
+            audioSource.PlayOneShot(laserSound);
         }
         else if(GunSwitcher == 5)
         {
@@ -132,6 +140,7 @@ public class Shooting : MonoBehaviour
                 BulletInstance.AddForce(Vector2.up * BulletSpeed, ForceMode2D.Impulse);
                 Destroy(BulletInstance.gameObject,DestroyBulletTime);
             }
+            audioSource.PlayOneShot(laserSound);
         }
         else if(GunSwitcher == 6)
         {
@@ -141,6 +150,7 @@ public class Shooting : MonoBehaviour
                 BulletInstance.AddForce(Vector2.up * BulletSpeed, ForceMode2D.Impulse);
                 Destroy(BulletInstance.gameObject,DestroyBulletTime);
             }
+            audioSource.PlayOneShot(laserSound);
         }
         else if(GunSwitcher == 7)
         {
@@ -150,6 +160,7 @@ public class Shooting : MonoBehaviour
                 BulletInstance.AddForce(Vector2.up * BulletSpeed, ForceMode2D.Impulse);
                 Destroy(BulletInstance.gameObject,DestroyBulletTime);
             }
+            audioSource.PlayOneShot(laserSound);
         }
         else if(GunSwitcher == 8)
         {
@@ -159,6 +170,7 @@ public class Shooting : MonoBehaviour
                 BulletInstance.AddForce(Vector2.up * BulletSpeed, ForceMode2D.Impulse);
                 Destroy(BulletInstance.gameObject,DestroyBulletTime);
             }
+            audioSource.PlayOneShot(laserSound);
         }
         else if(GunSwitcher == 9)
         {
@@ -168,6 +180,15 @@ public class Shooting : MonoBehaviour
                 BulletInstance.AddForce(Vector2.up * BulletSpeed, ForceMode2D.Impulse);
                 Destroy(BulletInstance.gameObject,DestroyBulletTime);
             }
+            audioSource.PlayOneShot(laserSound);
+        }
+    }
+
+    void ShootMechCheck()
+    {
+        if(GunSwitcher == 4)
+        {
+            GunSwitcher =  3;
         }
     }
 
@@ -175,9 +196,9 @@ public class Shooting : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Z))
         {
-            if(GunSwitcher == 9)
+            if(GunSwitcher == 4)
             {
-                GunSwitcher = 9;
+                GunSwitcher = 3;
             }
             else
             {

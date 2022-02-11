@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
             {
                 Destroy(gameObject);
                 var Instance = Instantiate(explosion, transform.position, Quaternion.identity);
-                Destroy(Instance.gameObject,1);
+                Destroy(Instance.gameObject,2);
             }
         }
     }

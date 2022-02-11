@@ -15,6 +15,16 @@ public class SceneChanger : MonoBehaviour
         Application.Quit();
     }
 
+    public void Controls()
+    {
+        SceneManager.LoadScene("Controls");
+    }
+
+    public void MEnu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))

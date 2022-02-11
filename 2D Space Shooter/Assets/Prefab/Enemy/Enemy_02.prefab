@@ -171,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 7
   explosion: {fileID: 19842296, guid: ee58376daf7a2934fbb2aa475eda1178, type: 3}
+  explosionSound: {fileID: 8300000, guid: db8675c9404e69d47a03fd15515e1ec8, type: 3}
 --- !u!114 &8559408350408148624
 MonoBehaviour:
   m_ObjectHideFlags: 0

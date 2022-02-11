@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
@@ -23,6 +22,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] GameObject Enemy_01;
     [SerializeField] GameObject Enemy_02;
     [SerializeField] GameObject Boss_01;
+
+    [Header("PowerUps")]
+    [SerializeField] Rigidbody2D Health;
+    [SerializeField] Transform HealthSpawn;
+    [SerializeField] Rigidbody2D Gun;
+    [SerializeField] Transform GunSpawn;
+    [SerializeField] float PowerUpSpeed;
 
     [Header("UI")]
     [SerializeField] GameObject WaveOne;
@@ -47,6 +53,8 @@ public class Spawner : MonoBehaviour
 
     [Header("Debug Tree Status")]
     public Node.Status treeStatus = Node.Status.RUNNING;
+
+    private float t;
 
     #region Behaviour Tree Variables
 
@@ -116,8 +124,13 @@ public class Spawner : MonoBehaviour
 
     public Node.Status NextScene()
     {
-        StartCoroutine(Menu());
-        return Node.Status.SUCCESS;
+        t += Time.deltaTime;
+        if(t > 5)
+        {
+            GameObject.FindGameObjectWithTag("over").GetComponent<Menu>().activatingGameOverMenu();
+            return Node.Status.SUCCESS;
+        }
+        return Node.Status.RUNNING;
     }
 
     public Node.Status SpawnBoss()
@@ -125,6 +138,7 @@ public class Spawner : MonoBehaviour
         var Instance = Instantiate(BossWave, WaveOne.transform.position,Quaternion.identity);
         Destroy(Instance, 2);
         Instantiate(Boss_01,SpawnPoint_03.position,Quaternion.identity);
+        PowerUpSpawn();
         return Node.Status.SUCCESS;
     }
 
@@ -193,6 +207,7 @@ public class Spawner : MonoBehaviour
         NoOfEnemies = DynamicHoldPoints.Length;
         var Instance = Instantiate(WaveThree, WaveOne.transform.position,Quaternion.identity);
         Destroy(Instance, SpawnTime);
+        PowerUpSpawn();
         return Node.Status.SUCCESS;
     }
 
@@ -206,6 +221,7 @@ public class Spawner : MonoBehaviour
         NoOfEnemies = DynamicHoldPoints.Length;
         var Instance = Instantiate(WaveTwo, WaveOne.transform.position,Quaternion.identity);
         Destroy(Instance, SpawnTime);
+        PowerUpSpawn();
         return Node.Status.SUCCESS;
     }
 
@@ -220,6 +236,17 @@ public class Spawner : MonoBehaviour
         var Instance = Instantiate(WaveOne, WaveOne.transform.position,Quaternion.identity);
         Destroy(Instance, SpawnTime);
         return Node.Status.SUCCESS;
+    }
+
+    void PowerUpSpawn()
+    {
+        var health = Instantiate(Health, HealthSpawn.position,Quaternion.identity);
+        health.AddForce(Vector2.down * PowerUpSpeed, ForceMode2D.Impulse);
+        Destroy(health.gameObject,10);
+
+        var gun = Instantiate(Gun, GunSpawn.position, Quaternion.identity);
+        gun.AddForce(Vector2.down * PowerUpSpeed, ForceMode2D.Impulse);
+        Destroy(gun.gameObject,10);
     }
 
     public Node.Status WaitingForNext()
@@ -259,13 +286,6 @@ public class Spawner : MonoBehaviour
             return Node.Status.SUCCESS;
         }
         return Node.Status.RUNNING;
-    }
-
-    IEnumerator Menu()
-    {
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene("Menu");
-        yield break;
     }
 
     void Update()
