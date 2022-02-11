@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1886205857325491231}
   m_Layer: 0
   m_Name: Enemy_03
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 4
   explosion: {fileID: 19842296, guid: 338df03eebe5ae847be4ed4fdd4a253e, type: 3}
-  explosionSound: {fileID: 8300000, guid: db8675c9404e69d47a03fd15515e1ec8, type: 3}
 --- !u!1 &2056195983156748683
 GameObject:
   m_ObjectHideFlags: 0
